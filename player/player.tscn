@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://assets/art/wizard/wizard_red.png" type="Texture" id=1]
+[ext_resource path="res://player/player.gd" type="Script" id=2]
+[ext_resource path="res://assets/art/wizard/wizard_hat_red.png" type="Texture" id=3]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 5, 9.5 )
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 4.5, 1 )
+
+[node name="Player1" type="KinematicBody2D"]
+position = Vector2( 85, 94 )
+script = ExtResource( 2 )
+
+[node name="Hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2( 0, -0.5 )
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -0.5, 5 )
+shape = SubResource( 1 )
+
+[node name="Transform" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="Shadow" type="Sprite" parent="Transform"]
+position = Vector2( -0.5, 6.5 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 2, 17, 9, 1 )
+
+[node name="Sprite" type="Sprite" parent="Transform"]
+position = Vector2( -0.5, 0 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 2, 5, 9, 12 )
+
+[node name="Hat" type="Sprite" parent="Transform"]
+position = Vector2( -1, -2 )
+texture = ExtResource( 3 )
