@@ -1,19 +1,18 @@
 extends KinematicBody2D
 
 
-const MOVEMENT_SPEED: float = 50.0
+const MOVEMENT_SPEED: float = 60.0
 const ACCELERATION_WEIGHT: float = 30.0  # Multiplied by physics delta to get lerp weight
 const DECCELERATION_WEIGHT: float = 30.0  # Multiplied by physics delta to get lerp weight
 
 var velocity: Vector2
 
-onready var transform_node = get_node("%Transform")
+onready var direction_node := get_node("%Direction") as Node2D
+onready var wand := get_node("%Wand") as Sprite
 
 
 func _physics_process(delta: float) -> void:
 	var movement: Vector2 = _get_movement_input()
-	
-	_update_facing_direction(movement.x)
 	
 	if movement:
 		velocity = lerp(velocity, movement.normalized() * MOVEMENT_SPEED, ACCELERATION_WEIGHT * delta)
@@ -21,6 +20,8 @@ func _physics_process(delta: float) -> void:
 		velocity = lerp(velocity, movement.normalized() * MOVEMENT_SPEED, DECCELERATION_WEIGHT * delta)
 	
 	velocity = move_and_slide(velocity)
+
+	_update_wand_direction()
 
 
 func _get_movement_input() -> Vector2:
@@ -38,8 +39,11 @@ func _get_movement_input() -> Vector2:
 	return movement
 
 
-func _update_facing_direction(x_movement: float) -> void:
-	if x_movement > 0.1:
-		transform_node.scale.x = 1
-	elif x_movement < -0.1:
-		transform_node.scale.x = -1
+func _update_wand_direction() -> void:
+	var looking_vector: Vector2 = (get_global_mouse_position() - wand.global_position).normalized()
+	wand.rotation = looking_vector.angle()
+
+	if looking_vector.x > 0.1:
+		direction_node.scale.x = abs(direction_node.scale.x)
+	elif looking_vector.x < -0.1:
+		direction_node.scale.x = -abs(direction_node.scale.x)
