@@ -1,5 +1,7 @@
 extends KinematicBody2D
 
+class_name Player
+
 
 const MOVEMENT_SPEED: float = 60.0
 const ACCELERATION_WEIGHT: float = 30.0  # Multiplied by physics delta to get lerp weight
@@ -7,8 +9,9 @@ const DECCELERATION_WEIGHT: float = 30.0  # Multiplied by physics delta to get l
 
 var velocity: Vector2
 
-onready var direction_node := get_node("%Direction") as Node2D
-onready var wand := get_node("%Wand") as Sprite
+onready var direction_node := $Direction as Node2D
+onready var wand := $Wand
+onready var inventory := $Inventory as Inventory
 
 
 func _physics_process(delta: float) -> void:
@@ -21,7 +24,7 @@ func _physics_process(delta: float) -> void:
 	
 	velocity = move_and_slide(velocity)
 
-	_update_wand_direction()
+	direction_node.scale.x = wand.direction_sign * abs(direction_node.scale.x)
 
 
 func _get_movement_input() -> Vector2:
@@ -37,13 +40,3 @@ func _get_movement_input() -> Vector2:
 		movement.y += 1
 	
 	return movement
-
-
-func _update_wand_direction() -> void:
-	var looking_vector: Vector2 = (get_global_mouse_position() - wand.global_position).normalized()
-	wand.rotation = looking_vector.angle()
-
-	if looking_vector.x > 0.1:
-		direction_node.scale.x = abs(direction_node.scale.x)
-	elif looking_vector.x < -0.1:
-		direction_node.scale.x = -abs(direction_node.scale.x)
