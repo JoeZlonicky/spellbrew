@@ -14,20 +14,20 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://ingredient/ingredient.gd"
 }, {
-"base": "Node",
-"class": "Inventory",
-"language": "GDScript",
-"path": "res://player/inventory.gd"
-}, {
 "base": "KinematicBody2D",
 "class": "Player",
 "language": "GDScript",
 "path": "res://player/player.gd"
+}, {
+"base": "Node",
+"class": "SpellInventory",
+"language": "GDScript",
+"path": "res://player/spell_inventory.gd"
 } ]
 _global_script_class_icons={
 "Ingredient": "",
-"Inventory": "",
-"Player": ""
+"Player": "",
+"SpellInventory": ""
 }
 
 [application]
@@ -104,11 +104,17 @@ interact={
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":69,"unicode":0,"echo":false,"script":null)
  ]
 }
+cast={
+"deadzone": 0.5,
+"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":1,"pressed":false,"doubleclick":false,"script":null)
+ ]
+}
 
 [layer_names]
 
 2d_physics/layer_1="Default"
 2d_physics/layer_2="Player"
+2d_physics/layer_3="Wall"
 
 [physics]
 

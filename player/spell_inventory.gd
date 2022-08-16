@@ -1,6 +1,6 @@
 extends Node
 
-class_name Inventory
+class_name SpellInventory
 
 const MAX_NUM_INGREDIENTS: int = 2
 

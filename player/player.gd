@@ -11,7 +11,7 @@ var velocity: Vector2
 
 onready var direction_node := $Direction as Node2D
 onready var wand := $Wand
-onready var inventory := $Inventory as Inventory
+onready var inventory := $SpellInventory as SpellInventory
 
 
 func _physics_process(delta: float) -> void:
