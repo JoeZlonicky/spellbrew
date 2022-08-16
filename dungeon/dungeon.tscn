@@ -1,12 +1,9 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://dungeon/tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://player/player.tscn" type="PackedScene" id=2]
-[ext_resource path="res://cauldron/cauldron.tscn" type="PackedScene" id=3]
-[ext_resource path="res://table/table.tscn" type="PackedScene" id=4]
-[ext_resource path="res://ingredient/ingredients/eye_of_newt.tres" type="Resource" id=5]
-[ext_resource path="res://ingredient/ingredients/pure_lightning.tres" type="Resource" id=6]
-[ext_resource path="res://ingredient/ingredients/slime_ball.tres" type="Resource" id=7]
+[ext_resource path="res://interactable/cauldron/cauldron.tscn" type="PackedScene" id=3]
+[ext_resource path="res://interactable/table/table.tscn" type="PackedScene" id=4]
 
 [node name="Dungeon" type="Node2D"]
 
@@ -26,9 +23,6 @@ tile_data = PoolIntArray( 0, 1, 0, 1, 1, 1, 2, 1, 1, 3, 1, 1, 4, 1, 1, 5, 1, 1, 
 
 [node name="Player1" parent="YSort" instance=ExtResource( 2 )]
 
-[node name="Cauldron" parent="YSort" instance=ExtResource( 3 )]
-position = Vector2( 152, 101 )
-
 [node name="Table" parent="YSort" instance=ExtResource( 4 )]
 position = Vector2( 91, 24 )
 
@@ -37,30 +31,27 @@ position = Vector2( 214, 24 )
 
 [node name="Table3" parent="YSort" instance=ExtResource( 4 )]
 position = Vector2( 15, 72 )
-ingredients = [ ExtResource( 5 ) ]
 
 [node name="Table8" parent="YSort" instance=ExtResource( 4 )]
 position = Vector2( 15, 58 )
-ingredients = [ ExtResource( 5 ) ]
 
 [node name="Table4" parent="YSort" instance=ExtResource( 4 )]
 position = Vector2( 15, 134 )
-ingredients = [ ExtResource( 7 ) ]
 
 [node name="Table10" parent="YSort" instance=ExtResource( 4 )]
 position = Vector2( 15, 151 )
-ingredients = [ ExtResource( 7 ) ]
 
 [node name="Table5" parent="YSort" instance=ExtResource( 4 )]
 position = Vector2( 15, 98 )
-ingredients = [ ExtResource( 6 ) ]
 
 [node name="Table9" parent="YSort" instance=ExtResource( 4 )]
 position = Vector2( 15, 113 )
-ingredients = [ ExtResource( 6 ) ]
 
 [node name="Table6" parent="YSort" instance=ExtResource( 4 )]
 position = Vector2( 304, 71 )
 
 [node name="Table7" parent="YSort" instance=ExtResource( 4 )]
 position = Vector2( 305, 127 )
+
+[node name="Cauldron" parent="YSort" instance=ExtResource( 3 )]
+position = Vector2( 153, 95 )
