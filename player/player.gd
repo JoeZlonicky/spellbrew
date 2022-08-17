@@ -10,6 +10,7 @@ const DECCELERATION_WEIGHT: float = 30.0  # Multiplied by physics delta to get l
 var velocity: Vector2
 
 onready var direction_node := $Direction as Node2D
+onready var animation_state_machine = $AnimationTree["parameters/playback"] as AnimationNodeStateMachinePlayback
 onready var wand := $Wand
 onready var inventory := $SpellInventory as SpellInventory
 
@@ -19,8 +20,10 @@ func _physics_process(delta: float) -> void:
 	
 	if movement:
 		velocity = lerp(velocity, movement.normalized() * MOVEMENT_SPEED, ACCELERATION_WEIGHT * delta)
+		animation_state_machine.travel("walk")
 	else:
 		velocity = lerp(velocity, movement.normalized() * MOVEMENT_SPEED, DECCELERATION_WEIGHT * delta)
+		animation_state_machine.travel("idle")
 	
 	velocity = move_and_slide(velocity)
 
