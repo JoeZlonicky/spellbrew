@@ -84,3 +84,8 @@ explosiveness = 1.0
 local_coords = false
 process_material = SubResource( 7 )
 texture = ExtResource( 1 )
+
+[node name="FreeDelayTimer" type="Timer" parent="."]
+wait_time = 0.5
+
+[connection signal="timeout" from="FreeDelayTimer" to="." method="_on_FreeDelayTimer_timeout"]

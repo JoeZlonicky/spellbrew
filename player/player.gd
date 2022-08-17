@@ -9,10 +9,10 @@ const DECCELERATION_WEIGHT: float = 30.0  # Multiplied by physics delta to get l
 
 var velocity: Vector2
 
-onready var direction_node := $Direction as Node2D
-onready var animation_state_machine = $AnimationTree["parameters/playback"] as AnimationNodeStateMachinePlayback
-onready var wand := $Wand
-onready var inventory := $SpellInventory as SpellInventory
+onready var direction_node: Node2D = $Direction
+onready var animation_state_machine: AnimationNodeStateMachinePlayback = $AnimationTree["parameters/playback"]
+onready var wand: Wand = $Wand
+onready var inventory: SpellInventory = $SpellInventory
 
 
 func _physics_process(delta: float) -> void:

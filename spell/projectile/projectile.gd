@@ -12,6 +12,7 @@ onready var sprite = $Sprite
 onready var trail_particles = $TrailParticles
 onready var explosion_particles = $ExplosionParticles
 onready var collision_shape = $CollisionShape2D
+onready var free_delay_timer = $FreeDelayTimer
 
 
 func _physics_process(delta: float) -> void:
@@ -38,3 +39,8 @@ func destroy():
 	sprite.visible = false
 	trail_particles.emitting = false
 	explosion_particles.emitting = true
+	free_delay_timer.start()
+
+
+func _on_FreeDelayTimer_timeout():
+	queue_free()

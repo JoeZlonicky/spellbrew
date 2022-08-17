@@ -1,8 +1,10 @@
 extends Sprite
 
+class_name Wand
 
-const BASIC_PROJECTILE = preload("res://spell/projectile/projectile.tscn")
 
+const BASIC_SPELL := preload("res://spell/spells/basic_spell.gd")
+const FLAMETHROWER_SPELL := preload("res://spell/spells/flame_thrower.gd")
 
 var direction_sign: int = 1
 
@@ -19,14 +21,13 @@ func _physics_process(_delta) -> void:
 		direction_sign = -1
 	
 	if Input.is_action_just_pressed("cast"):
-		cast_basic_spell()
+		cast_spell(FLAMETHROWER_SPELL)
 
 
-func cast_basic_spell() -> void:
-	var cast_spell = BASIC_PROJECTILE.instance()
-	cast_spell.direction = _get_looking_direction()
-	get_tree().root.add_child(cast_spell)
-	cast_spell.global_position = end.global_position
+func cast_spell(spell_script: Script):
+	var spell = Spell.new()
+	spell.initialize(get_parent(), spell_script, get_global_mouse_position())
+	add_child(spell)
 
 
 func _get_looking_direction() -> Vector2:

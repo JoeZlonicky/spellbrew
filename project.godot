@@ -19,15 +19,27 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://player/player.gd"
 }, {
+"base": "Node2D",
+"class": "Spell",
+"language": "GDScript",
+"path": "res://spell/spell.gd"
+}, {
 "base": "Node",
 "class": "SpellInventory",
 "language": "GDScript",
 "path": "res://player/spell_inventory.gd"
+}, {
+"base": "Sprite",
+"class": "Wand",
+"language": "GDScript",
+"path": "res://player/wand.gd"
 } ]
 _global_script_class_icons={
 "Ingredient": "",
 "Player": "",
-"SpellInventory": ""
+"Spell": "",
+"SpellInventory": "",
+"Wand": ""
 }
 
 [application]
