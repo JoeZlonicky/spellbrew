@@ -10,5 +10,11 @@ texture = ExtResource( 2 )
 offset = Vector2( 2, 0 )
 script = ExtResource( 1 )
 
-[node name="End" type="Position2D" parent="."]
+[node name="CastPoint" type="Position2D" parent="."]
 position = Vector2( 5, 0 )
+
+[node name="ActiveSpells" type="Node2D" parent="."]
+
+[node name="BasicSpellCooldownTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true

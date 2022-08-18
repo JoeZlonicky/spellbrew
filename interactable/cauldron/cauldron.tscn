@@ -5,7 +5,8 @@
 [ext_resource path="res://interactable/cauldron/cauldron.gd" type="Script" id=3]
 [ext_resource path="res://assets/art/ui/white_outline.png" type="Texture" id=4]
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="RectangleShape2D" id=8]
+extents = Vector2( 15, 14.5 )
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 8.00001
@@ -48,7 +49,9 @@ position = Vector2( 0, -8.5 )
 texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" parent="." index="1"]
-shape = SubResource( 2 )
+visible = true
+position = Vector2( 0, -5.5 )
+shape = SubResource( 8 )
 
 [node name="Prompt" parent="." index="2"]
 margin_left = -4.0

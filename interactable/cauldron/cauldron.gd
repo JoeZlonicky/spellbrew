@@ -1,9 +1,11 @@
 extends "res://interactable/interactable.gd"
 
 
-func is_interactable(player: Player):
+# Only allow interaction if player has enough ingredients
+func is_interactable(player) -> bool:
 	return player.inventory.is_full()
 
 
-func interact(player: Player):
+# Empty ingredients from player's inventory
+func interact(player) -> void:
 	player.inventory.empty()
