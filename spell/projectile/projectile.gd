@@ -8,12 +8,15 @@ export (float) var MAX_DISTANCE = -1.0  # Negative means no max distance
 var direction: Vector2
 var distance_travelled: float = 0.0
 var player_cast_by = null
+var player_color: Color
 
 onready var sprite: Sprite = $Sprite
 onready var trail_particles: Particles2D = $TrailParticles
 onready var explosion_particles: Particles2D = $ExplosionParticles
 onready var collision_shape: CollisionShape2D = $CollisionShape2D
 onready var free_delay_timer: Timer = $FreeDelayTimer
+onready var outline_sprite = $Sprite/Outline
+onready var inner_sprite = $Sprite/Inner
 
 
 # A projectile that will go till it hits something or travels MAX_DISTANCE
@@ -34,7 +37,7 @@ func _physics_process(delta: float) -> void:
 
 
 # Stop moving and play destroy animation
-func destroy():
+func destroy() -> void:
 	set_physics_process(false)
 	collision_shape.set_deferred("disabled", true)
 	sprite.visible = false
@@ -44,11 +47,18 @@ func destroy():
 
 
 # Give enough time for explosion particles to emit before freeing
-func _on_FreeDelayTimer_timeout():
+func _on_FreeDelayTimer_timeout() -> void:
 	queue_free()
 
 
 # Check for hitting player hitbox
-func _on_Hitbox_area_entered(area):
+func _on_Hitbox_area_entered(area) -> void:
 	if area.is_in_group("player_hitbox") and area.player != player_cast_by:
 		destroy()
+
+
+func set_player_color(color: Color) -> void:
+	player_color = color
+	outline_sprite.self_modulate = color
+	inner_sprite.self_modulate = color
+	explosion_particles.self_modulate = color

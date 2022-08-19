@@ -5,7 +5,8 @@ const SPELL = preload("res://spell/spell.gd")
 
 var direction_sign: int = 1
 var is_casting_spell: bool = false
-var held_spell: int = AL_SpellManager.SPELL_LIST.INFERNO_BLAST
+var held_spell: int = AL_SpellManager.SPELL_LIST.BASIC_SPELL
+var player_color: Color
 
 onready var cast_point: Position2D = $CastPoint
 onready var active_spells_node: Node2D = $ActiveSpells  # Just for organization
@@ -36,7 +37,7 @@ func _physics_process(_delta) -> void:
 func cast_held_spell() -> void:
 	var spell = SPELL.new()
 	spell.set_script(AL_SpellManager.SPELL_SCRIPTS[held_spell])
-	spell.initialize(get_parent(), get_global_mouse_position())
+	spell.initialize(get_parent(), get_global_mouse_position(), player_color)
 	active_spells_node.add_child(spell)
 	spell.connect("tree_exited", self, "_on_spell_tree_exited")
 
@@ -47,3 +48,7 @@ func _get_looking_direction() -> Vector2:
 
 func _on_spell_tree_exited() -> void:
 	is_casting_spell = false
+
+
+func set_player_color(color: Color) -> void:
+	player_color = color
