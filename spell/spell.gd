@@ -5,8 +5,7 @@ var player_cast_by
 var player_position_at_cast: Vector2
 var player_color: Color
 var wand_end_at_cast: Vector2
-var mouse_position_at_cast: Vector2
-var mouse_direction_at_cast: Vector2
+var direction_at_cast: Vector2
 
 
 # Use this as a template for making spells
@@ -24,8 +23,7 @@ func initialize(player: KinematicBody2D, mouse_position: Vector2, color: Color):
 	player_position_at_cast = player.global_position
 	player_color = color
 	wand_end_at_cast = player.wand.cast_point.global_position
-	mouse_position_at_cast = mouse_position
-	mouse_direction_at_cast = (mouse_position_at_cast - player.wand.global_position).normalized()
+	direction_at_cast = (mouse_position - player.wand.global_position).normalized()
 
 
 # Helper function that simply spawns a projectile at the end of the wand

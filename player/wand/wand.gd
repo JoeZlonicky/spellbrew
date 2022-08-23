@@ -3,6 +3,8 @@ extends Sprite
 
 const SPELL = preload("res://spell/spell.gd")
 
+export (NodePath) var input_handler_path
+
 var direction_sign: int = 1
 var is_casting_spell: bool = false
 var held_spell: int = AL_SpellManager.SPELL_LIST.BASIC_SPELL
@@ -11,6 +13,7 @@ var player_color: Color
 onready var cast_point: Position2D = $CastPoint
 onready var active_spells_node: Node2D = $ActiveSpells  # Just for organization
 onready var basic_spell_cooldown_timer: Timer = $BasicSpellCooldownTimer  # How often the basic spell can be cast
+onready var input_handler = get_node(input_handler_path)
 
 
 # Follow mouse and handle spell casting
@@ -23,7 +26,7 @@ func _physics_process(_delta) -> void:
 	elif looking_direction.x < -0.1:
 		direction_sign = -1
 	
-	if Input.is_action_just_pressed("cast") and not is_casting_spell:
+	if input_handler.cast_pressed and not is_casting_spell:
 		if held_spell == AL_SpellManager.SPELL_LIST.BASIC_SPELL:
 			if basic_spell_cooldown_timer.is_stopped():
 				cast_held_spell()
@@ -43,7 +46,9 @@ func cast_held_spell() -> void:
 
 
 func _get_looking_direction() -> Vector2:
-	return (get_global_mouse_position() - global_position).normalized()
+	if input_handler.is_kbm():
+		return (get_global_mouse_position() - global_position).normalized()
+	return Vector2.ZERO
 
 
 func _on_spell_tree_exited() -> void:

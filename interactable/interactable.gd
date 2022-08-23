@@ -16,7 +16,7 @@ func _physics_process(_delta) -> void:
 		
 		if is_interactable(player):
 			prompt.show()
-			if Input.is_action_just_pressed("interact"):
+			if player.input_handler.interact_pressed:
 				interact(player)
 		
 		emit_signal("interacted_with", player)

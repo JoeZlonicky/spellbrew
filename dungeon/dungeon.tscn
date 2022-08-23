@@ -1,9 +1,60 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://dungeon/tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://player/player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://interactable/cauldron/cauldron.tscn" type="PackedScene" id=3]
 [ext_resource path="res://interactable/table/table.tscn" type="PackedScene" id=4]
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Direction/Sprite:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "idle"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Direction/Sprite:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "walk"
+length = 0.6
+loop = true
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Direction/Sprite:rotation_degrees")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.15, 0.3, 0.45 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 3.0, 0.0, -3.0 ]
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=5]
 
 [sub_resource type="Environment" id=1]
 background_mode = 4
@@ -32,6 +83,32 @@ tile_data = PoolIntArray( 0, 1, 0, 1, 1, 1, 2, 1, 1, 3, 1, 1, 4, 1, 1, 5, 1, 1, 
 [node name="YSort" type="YSort" parent="."]
 
 [node name="Player1" parent="YSort" instance=ExtResource( 2 )]
+
+[node name="Player2" parent="YSort" instance=ExtResource( 2 )]
+position = Vector2( 84, 124 )
+
+[node name="Robe" parent="YSort/Player2/Direction/Sprite" index="0"]
+self_modulate = Color( 1.59375, 0.5, 2.5, 1 )
+
+[node name="Hat" parent="YSort/Player2/Direction/Sprite" index="3"]
+self_modulate = Color( 1.59375, 0.5, 2.5, 1 )
+
+[node name="Wand" parent="YSort/Player2" index="1"]
+self_modulate = Color( 1.59375, 0.5, 2.5, 1 )
+
+[node name="AnimationPlayer" parent="YSort/Player2" index="4"]
+anims/RESET = SubResource( 2 )
+anims/idle = SubResource( 3 )
+anims/walk = SubResource( 4 )
+
+[node name="AnimationTree" parent="YSort/Player2" index="5"]
+parameters/playback = SubResource( 5 )
+
+[node name="ColorModulation" parent="YSort/Player2" index="6"]
+modulation = Color( 1.59375, 0.5, 2.5, 1 )
+
+[node name="InputHandler" parent="YSort/Player2" index="8"]
+device_name = "0"
 
 [node name="Table" parent="YSort" instance=ExtResource( 4 )]
 position = Vector2( 91, 24 )
@@ -68,3 +145,5 @@ position = Vector2( 153, 95 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 1 )
+
+[editable path="YSort/Player2"]

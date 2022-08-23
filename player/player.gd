@@ -1,8 +1,6 @@
 extends KinematicBody2D
 
 
-export (int) var player_number
-
 const MOVEMENT_SPEED: float = 60.0
 const ACCELERATION_WEIGHT: float = 30.0  # Multiplied by physics delta to get lerp weight
 const DECCELERATION_WEIGHT: float = 30.0  # Multiplied by physics delta to get lerp weight
@@ -15,12 +13,13 @@ var knockback: Vector2
 onready var direction_node: Node2D = $Direction
 onready var animation_state_machine: AnimationNodeStateMachinePlayback = $AnimationTree["parameters/playback"]
 onready var wand = $Wand
-onready var inventory = $SpellInventory
+onready var inventory = $Inventory
+onready var input_handler = $InputHandler
 
 
 # Handle movement
 func _physics_process(delta: float) -> void:
-	var movement: Vector2 = _get_movement_input()
+	var movement: Vector2 = input_handler.get_movement_input_vector()
 	
 	# Accelerate to movement input or deccelerate to zero if no input
 	if movement.length() > 0.1:
@@ -41,22 +40,6 @@ func _physics_process(delta: float) -> void:
 
 	# Face wand direction
 	direction_node.scale.x = wand.direction_sign * abs(direction_node.scale.x)
-
-
-# Get input movement vector
-func _get_movement_input() -> Vector2:
-	var movement := Vector2.ZERO
-	
-	if Input.is_action_pressed("move_right"):
-		movement.x += 1
-	if Input.is_action_pressed("move_left"):
-		movement.x -= 1
-	if Input.is_action_pressed("move_up"):
-		movement.y -= 1
-	if Input.is_action_pressed("move_down"):
-		movement.y += 1
-	
-	return movement
 
 
 # Add knockback to be applied during following physics steps

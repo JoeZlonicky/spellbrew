@@ -17,7 +17,7 @@ _global_script_classes=[ {
 "base": "Node",
 "class": "SpellInventory",
 "language": "GDScript",
-"path": "res://player/spell_inventory.gd"
+"path": "res://player/inventory.gd"
 } ]
 _global_script_class_icons={
 "Ingredient": "",
@@ -32,6 +32,7 @@ config/icon="res://icon.png"
 
 [autoload]
 
+AL_IngredientManager="*res://ingredient/ingredient_manager.gd"
 AL_SpellManager="*res://spell/spell_manager.gd"
 
 [display]
