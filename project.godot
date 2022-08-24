@@ -15,13 +15,31 @@ _global_script_classes=[ {
 "path": "res://ingredient/ingredient.gd"
 }, {
 "base": "Node",
+"class": "IngredientList",
+"language": "GDScript",
+"path": "res://ingredient/ingredient_list.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "Player",
+"language": "GDScript",
+"path": "res://player/player.gd"
+}, {
+"base": "Node",
 "class": "SpellInventory",
 "language": "GDScript",
 "path": "res://player/inventory.gd"
+}, {
+"base": "Resource",
+"class": "SpellList",
+"language": "GDScript",
+"path": "res://spell/spell_list.gd"
 } ]
 _global_script_class_icons={
 "Ingredient": "",
-"SpellInventory": ""
+"IngredientList": "",
+"Player": "",
+"SpellInventory": "",
+"SpellList": ""
 }
 
 [application]
@@ -29,11 +47,6 @@ _global_script_class_icons={
 config/name="Spellbrew"
 run/main_scene="res://dungeon/dungeon.tscn"
 config/icon="res://icon.png"
-
-[autoload]
-
-AL_IngredientManager="*res://ingredient/ingredient_manager.gd"
-AL_SpellManager="*res://spell/spell_manager.gd"
 
 [display]
 

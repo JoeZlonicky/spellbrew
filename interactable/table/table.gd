@@ -1,25 +1,34 @@
 extends "res://interactable/interactable.gd"
 
-export (Array, Resource) var ingredients
+const SPAWNABLE = [
+	IngredientList.EYE_OF_NEWT,
+	IngredientList.SLIME_BALL,
+	IngredientList.PURE_LIGHTNING
+]
 
-var ingredient: Ingredient = null
+export (int, -1, 2) var ingredient_override = -1  # For testing
+
+var ingredient: Ingredient
 
 onready var ingredient_sprite: Sprite = $IngredientSprite
 
 
 # Spawns ingredients to be picked by a player
 func _ready():
-	assert(ingredients.size() > 0, "Need to specify ingredient list for table")
-	set_ingredient(ingredients[randi() % len(ingredients)])
+	randomize()
+	if ingredient_override > -1:
+		set_ingredient(SPAWNABLE[ingredient_override])
+	else:
+		set_ingredient(SPAWNABLE[randi() % SPAWNABLE.size()])
 
 
 # Only allow interaction if there is an ingredient that can be picked up
-func is_interactable(player):
+func _is_interactable(player: Player):
 	return not player.inventory.is_full() and ingredient
 
 
 # Remove ingredient from table and add to player's inventory
-func interact(player):
+func _interact(player: Player):
 	player.inventory.add_ingredient(ingredient)
 	set_ingredient(null)
 
@@ -27,4 +36,7 @@ func interact(player):
 # Set ingredient on table (or null for removing)
 func set_ingredient(new_ingredient: Ingredient) -> void:
 	ingredient = new_ingredient
-	ingredient_sprite.texture = null if new_ingredient == null else new_ingredient.sprite
+	if new_ingredient == null:
+		ingredient_sprite.texture = null
+	else:
+		ingredient_sprite.texture = new_ingredient.sprite

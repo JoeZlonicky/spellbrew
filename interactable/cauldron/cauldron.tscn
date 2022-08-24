@@ -1,9 +1,9 @@
 [gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://interactable/interactable.tscn" type="PackedScene" id=1]
-[ext_resource path="res://assets/art/dungeon/cauldron.png" type="Texture" id=2]
+[ext_resource path="res://_assets/art/interactable/cauldron.png" type="Texture" id=2]
 [ext_resource path="res://interactable/cauldron/cauldron.gd" type="Script" id=3]
-[ext_resource path="res://assets/art/ui/white_outline.png" type="Texture" id=4]
+[ext_resource path="res://_assets/art/particles/white_box.png" type="Texture" id=4]
 
 [sub_resource type="RectangleShape2D" id=8]
 extents = Vector2( 15, 14.5 )

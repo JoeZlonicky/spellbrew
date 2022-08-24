@@ -1,11 +1,8 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://assets/art/dungeon/table.png" type="Texture" id=1]
+[ext_resource path="res://_assets/art/interactable/table.png" type="Texture" id=1]
 [ext_resource path="res://interactable/interactable.tscn" type="PackedScene" id=2]
 [ext_resource path="res://interactable/table/table.gd" type="Script" id=3]
-[ext_resource path="res://ingredient/ingredients/eye_of_newt.tres" type="Resource" id=4]
-[ext_resource path="res://ingredient/ingredients/pure_lightning.tres" type="Resource" id=5]
-[ext_resource path="res://ingredient/ingredients/slime_ball.tres" type="Resource" id=6]
 
 [sub_resource type="RectangleShape2D" id=2]
 
@@ -14,7 +11,7 @@ extents = Vector2( 8, 5 )
 
 [node name="Table" instance=ExtResource( 2 )]
 script = ExtResource( 3 )
-ingredients = [ ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ]
+ingredient_override = -1
 
 [node name="Sprite" type="Sprite" parent="." index="0"]
 position = Vector2( 0, -5 )

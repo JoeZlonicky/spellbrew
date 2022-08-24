@@ -82,62 +82,72 @@ tile_data = PoolIntArray( 0, 1, 0, 1, 1, 1, 2, 1, 1, 3, 1, 1, 4, 1, 1, 5, 1, 1, 
 
 [node name="YSort" type="YSort" parent="."]
 
-[node name="Player1" parent="YSort" instance=ExtResource( 2 )]
+[node name="Players" type="YSort" parent="YSort"]
 
-[node name="Player2" parent="YSort" instance=ExtResource( 2 )]
+[node name="Player1" parent="YSort/Players" instance=ExtResource( 2 )]
+
+[node name="Player2" parent="YSort/Players" instance=ExtResource( 2 )]
 position = Vector2( 84, 124 )
 
-[node name="Robe" parent="YSort/Player2/Direction/Sprite" index="0"]
+[node name="Robe" parent="YSort/Players/Player2/Direction/Sprite" index="0"]
+self_modulate = Color( 0.5, 2.5, 0.625, 1 )
+
+[node name="Hat" parent="YSort/Players/Player2/Direction/Sprite" index="3"]
+self_modulate = Color( 0.5, 2.5, 0.625, 1 )
+
+[node name="Wand" parent="YSort/Players/Player2" index="1"]
 self_modulate = Color( 1.59375, 0.5, 2.5, 1 )
 
-[node name="Hat" parent="YSort/Player2/Direction/Sprite" index="3"]
-self_modulate = Color( 1.59375, 0.5, 2.5, 1 )
-
-[node name="Wand" parent="YSort/Player2" index="1"]
-self_modulate = Color( 1.59375, 0.5, 2.5, 1 )
-
-[node name="AnimationPlayer" parent="YSort/Player2" index="4"]
+[node name="AnimationPlayer" parent="YSort/Players/Player2" index="4"]
 anims/RESET = SubResource( 2 )
 anims/idle = SubResource( 3 )
 anims/walk = SubResource( 4 )
 
-[node name="AnimationTree" parent="YSort/Player2" index="5"]
+[node name="AnimationTree" parent="YSort/Players/Player2" index="5"]
 parameters/playback = SubResource( 5 )
 
-[node name="ColorModulation" parent="YSort/Player2" index="6"]
-modulation = Color( 1.59375, 0.5, 2.5, 1 )
+[node name="ColorModulator" parent="YSort/Players/Player2" index="6"]
+modulation = Color( 0.5, 2.5, 0.625, 1 )
 
-[node name="InputHandler" parent="YSort/Player2" index="8"]
+[node name="InputHandler" parent="YSort/Players/Player2" index="8"]
 device_name = "0"
 
-[node name="Table" parent="YSort" instance=ExtResource( 4 )]
+[node name="Tables" type="YSort" parent="YSort"]
+
+[node name="Table" parent="YSort/Tables" instance=ExtResource( 4 )]
 position = Vector2( 91, 24 )
 
-[node name="Table2" parent="YSort" instance=ExtResource( 4 )]
+[node name="Table2" parent="YSort/Tables" instance=ExtResource( 4 )]
 position = Vector2( 214, 24 )
 
-[node name="Table3" parent="YSort" instance=ExtResource( 4 )]
-position = Vector2( 15, 72 )
+[node name="Table3" parent="YSort/Tables" instance=ExtResource( 4 )]
+position = Vector2( 15, 64 )
+ingredient_override = 0
 
-[node name="Table8" parent="YSort" instance=ExtResource( 4 )]
-position = Vector2( 15, 58 )
+[node name="Table8" parent="YSort/Tables" instance=ExtResource( 4 )]
+position = Vector2( 15, 41 )
+ingredient_override = 0
 
-[node name="Table4" parent="YSort" instance=ExtResource( 4 )]
-position = Vector2( 15, 134 )
+[node name="Table4" parent="YSort/Tables" instance=ExtResource( 4 )]
+position = Vector2( 15, 141 )
+ingredient_override = 2
 
-[node name="Table10" parent="YSort" instance=ExtResource( 4 )]
-position = Vector2( 15, 151 )
+[node name="Table10" parent="YSort/Tables" instance=ExtResource( 4 )]
+position = Vector2( 15, 164 )
+ingredient_override = 2
 
-[node name="Table5" parent="YSort" instance=ExtResource( 4 )]
-position = Vector2( 15, 98 )
+[node name="Table5" parent="YSort/Tables" instance=ExtResource( 4 )]
+position = Vector2( 15, 91 )
+ingredient_override = 1
 
-[node name="Table9" parent="YSort" instance=ExtResource( 4 )]
-position = Vector2( 15, 113 )
+[node name="Table9" parent="YSort/Tables" instance=ExtResource( 4 )]
+position = Vector2( 15, 114 )
+ingredient_override = 1
 
-[node name="Table6" parent="YSort" instance=ExtResource( 4 )]
+[node name="Table6" parent="YSort/Tables" instance=ExtResource( 4 )]
 position = Vector2( 304, 71 )
 
-[node name="Table7" parent="YSort" instance=ExtResource( 4 )]
+[node name="Table7" parent="YSort/Tables" instance=ExtResource( 4 )]
 position = Vector2( 305, 127 )
 
 [node name="Cauldron" parent="YSort" instance=ExtResource( 3 )]
@@ -146,4 +156,4 @@ position = Vector2( 153, 95 )
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 1 )
 
-[editable path="YSort/Player2"]
+[editable path="YSort/Players/Player2"]

@@ -1,5 +1,6 @@
 extends KinematicBody2D
 
+class_name Player
 
 const MOVEMENT_SPEED: float = 60.0
 const ACCELERATION_WEIGHT: float = 30.0  # Multiplied by physics delta to get lerp weight

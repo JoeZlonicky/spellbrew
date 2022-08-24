@@ -5,27 +5,29 @@ signal interacted_with(player)
 onready var prompt = $Prompt as TextureRect
 
 
-func _physics_process(_delta) -> void:
+# Check for overlapping player and if they try to interact
+func _physics_process(_delta: float) -> void:
 	prompt.hide()
 	
 	for body in get_overlapping_bodies():
-		if not body.is_in_group("player"):
+		var player: Player = body  # Will be null if not a player
+		if not player:
 			continue
 		
-		var player = body
-		
-		if is_interactable(player):
+		if _is_interactable(player):
 			prompt.show()
 			if player.input_handler.interact_pressed:
-				interact(player)
+				_interact(player)
 		
 		emit_signal("interacted_with", player)
 
 
-func interact(_player) -> void:
+# Overriden by inherited scripts to determine interact behaviour
+func _interact(_player: Player) -> void:
 	assert(false, "the method 'interact' is not overriden in '" + name + "'")
 
 
-func is_interactable(_player) -> bool:
+# Overriden by inherited scripts to determine when to be interactable
+func _is_interactable(_player: Player) -> bool:
 	assert(false, "the method 'is_interactable' is not overriden in '" + name + "'")
 	return false

@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=2]
 
-[ext_resource path="res://assets/art/ui/white_outline.png" type="Texture" id=1]
+[ext_resource path="res://_assets/art/particles/white_box.png" type="Texture" id=1]
 [ext_resource path="res://spell/projectile/projectile.gd" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]

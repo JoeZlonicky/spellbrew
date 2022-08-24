@@ -7,7 +7,7 @@ export (NodePath) var input_handler_path
 
 var direction_sign: int = 1
 var is_casting_spell: bool = false
-var held_spell: int = AL_SpellManager.SPELL_LIST.BASIC_SPELL
+var held_spell: GDScript = SpellList.BASIC_SPELL
 var player_color: Color
 
 onready var cast_point: Position2D = $CastPoint
@@ -27,7 +27,7 @@ func _physics_process(_delta) -> void:
 		direction_sign = -1
 	
 	if input_handler.cast_pressed and not is_casting_spell:
-		if held_spell == AL_SpellManager.SPELL_LIST.BASIC_SPELL:
+		if held_spell == SpellList.BASIC_SPELL:
 			if basic_spell_cooldown_timer.is_stopped():
 				cast_held_spell()
 				is_casting_spell = true
@@ -39,7 +39,7 @@ func _physics_process(_delta) -> void:
 
 func cast_held_spell() -> void:
 	var spell = SPELL.new()
-	spell.set_script(AL_SpellManager.SPELL_SCRIPTS[held_spell])
+	spell.set_script(held_spell)
 	spell.initialize(get_parent(), get_global_mouse_position(), player_color)
 	active_spells_node.add_child(spell)
 	spell.connect("tree_exited", self, "_on_spell_tree_exited")
@@ -53,7 +53,13 @@ func _get_looking_direction() -> Vector2:
 
 func _on_spell_tree_exited() -> void:
 	is_casting_spell = false
+	held_spell = SpellList.BASIC_SPELL
 
 
 func set_player_color(color: Color) -> void:
+	self_modulate = color
 	player_color = color
+
+
+func equip_spell(spell: GDScript) -> void:
+	held_spell = spell

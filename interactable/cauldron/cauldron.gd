@@ -1,24 +1,37 @@
 extends "res://interactable/interactable.gd"
 
 
+const SPELL_RECIPES = {
+	SpellList.FLAMETHROWER: [IngredientList.EYE_OF_NEWT, IngredientList.EYE_OF_NEWT],
+	SpellList.INFERNO_BLAST: [IngredientList.PURE_LIGHTNING, IngredientList.PURE_LIGHTNING]
+}
+
 
 # Only allow interaction if player has enough ingredients
-func is_interactable(player) -> bool:
+func _is_interactable(player: Player) -> bool:
 	return player.inventory.is_full()
 
 
-# Empty ingredients from player's inventory
-func interact(player) -> void:
-	player.inventory.empty()
+# Use ingredients from player's inventory to create a spell
+func _interact(player: Player) -> void:
+	if not player.inventory.is_full():
+		return
+	
+	var ingredient_1 = player.inventory.ingredients[0]
+	var ingredient_2 = player.inventory.ingredients[1]
+	var spell = _get_spell_from_ingredients(ingredient_1, ingredient_2)
+	if spell:
+		player.inventory.empty()
+		player.wand.equip_spell(spell)
 
 
-func determine_spell(ingredient_1: Ingredient, ingredient_2: Ingredient):
-	pass
-
-
-func ingredient_comparison(ingredient_1: Ingredient, ingredient_2: Ingredient, to_1: Ingredient, to_2: Ingredient):
-	if ingredient_1 == to_1 && ingredient_2 == to_2:
-		return true
-	if ingredient_2 == to_1 && ingredient_1 == to_2:
-		return true
-	return false
+# Tries to find a matching spell recipe for the given ingredients
+# Returns null if there is no matching recipe
+func _get_spell_from_ingredients(ingredient_1: Ingredient, ingredient_2: Ingredient):
+	for spell in SPELL_RECIPES:
+		var recipe = SPELL_RECIPES[spell]
+		if recipe[0] == ingredient_1 and recipe[1] == ingredient_2:
+			return spell
+		if recipe[1] == ingredient_1 and recipe[0] == ingredient_2:
+			return spell
+	return null

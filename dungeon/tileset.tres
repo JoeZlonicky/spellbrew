@@ -1,7 +1,7 @@
 [gd_resource type="TileSet" load_steps=11 format=2]
 
-[ext_resource path="res://assets/art/dungeon/dungeon_floor.png" type="Texture" id=1]
-[ext_resource path="res://assets/art/dungeon/dungeon_walls.png" type="Texture" id=2]
+[ext_resource path="res://_assets/art/dungeon/dungeon_floor.png" type="Texture" id=1]
+[ext_resource path="res://_assets/art/dungeon/dungeon_walls.png" type="Texture" id=2]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
@@ -100,7 +100,7 @@ points = PoolVector2Array( 13, 0, 16, 0, 16, 16, 13, 16 )
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 1/z_index = 0
-2/name = "Floor Top-left"
+2/name = "Floor Top-Left"
 2/texture = ExtResource( 1 )
 2/tex_offset = Vector2( 0, 0 )
 2/modulate = Color( 1, 1, 1, 1 )
@@ -128,7 +128,7 @@ points = PoolVector2Array( 13, 0, 16, 0, 16, 16, 13, 16 )
 3/shape_one_way_margin = 0.0
 3/shapes = [  ]
 3/z_index = 0
-4/name = "Floor Top-right"
+4/name = "Floor Top-Right"
 4/texture = ExtResource( 1 )
 4/tex_offset = Vector2( 0, 0 )
 4/modulate = Color( 1, 1, 1, 1 )
