@@ -3,7 +3,8 @@ extends "res://interactable/interactable.gd"
 
 const SPELL_RECIPES = {
 	SpellList.FLAMETHROWER: [IngredientList.EYE_OF_NEWT, IngredientList.EYE_OF_NEWT],
-	SpellList.INFERNO_BLAST: [IngredientList.PURE_LIGHTNING, IngredientList.PURE_LIGHTNING]
+	SpellList.INFERNO_BLAST: [IngredientList.PURE_LIGHTNING, IngredientList.PURE_LIGHTNING],
+	SpellList.CROSS_FIRE: [IngredientList.EYE_OF_NEWT, IngredientList.PURE_LIGHTNING]
 }
 
 
@@ -17,9 +18,9 @@ func _interact(player: Player) -> void:
 	if not player.inventory.is_full():
 		return
 	
-	var ingredient_1 = player.inventory.ingredients[0]
-	var ingredient_2 = player.inventory.ingredients[1]
-	var spell = _get_spell_from_ingredients(ingredient_1, ingredient_2)
+	var spell = _get_spell_from_ingredients(player.inventory.ingredient_1,
+		player.inventory.ingredient_2)
+	
 	if spell:
 		player.inventory.empty()
 		player.wand.equip_spell(spell)

@@ -7,3 +7,4 @@
 script = ExtResource( 1 )
 display_name = "Eye of Newt"
 sprite = ExtResource( 2 )
+color = "Red"

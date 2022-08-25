@@ -7,3 +7,4 @@
 script = ExtResource( 1 )
 display_name = "Pure Lightning"
 sprite = ExtResource( 2 )
+color = "Blue"

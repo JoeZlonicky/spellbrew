@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://_assets/art/ui/slot_blue.png" type="Texture" id=1]
+[ext_resource path="res://_assets/art/ui/slot_red.png" type="Texture" id=2]
+[ext_resource path="res://_assets/art/ui/slot_unfilled.png" type="Texture" id=3]
+[ext_resource path="res://_assets/art/ui/slot_green.png" type="Texture" id=4]
+[ext_resource path="res://player/inventory/ingredient_slot/ingredient_slot.gd" type="Script" id=5]
+
+[node name="IngredientSlot" type="CenterContainer"]
+margin_left = 1.0
+margin_right = 5.0
+margin_bottom = 4.0
+script = ExtResource( 5 )
+
+[node name="Empty" type="TextureRect" parent="."]
+margin_right = 4.0
+margin_bottom = 4.0
+texture = ExtResource( 3 )
+
+[node name="Red" type="TextureRect" parent="."]
+visible = false
+margin_right = 4.0
+margin_bottom = 4.0
+texture = ExtResource( 2 )
+
+[node name="Green" type="TextureRect" parent="."]
+visible = false
+margin_right = 4.0
+margin_bottom = 4.0
+texture = ExtResource( 4 )
+
+[node name="Blue" type="TextureRect" parent="."]
+visible = false
+margin_right = 4.0
+margin_bottom = 4.0
+texture = ExtResource( 1 )

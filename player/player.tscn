@@ -5,7 +5,7 @@
 [ext_resource path="res://_assets/art/wizard/wizard_hat.png" type="Texture" id=3]
 [ext_resource path="res://player/wand/wand.tscn" type="PackedScene" id=4]
 [ext_resource path="res://player/player_hitbox.gd" type="Script" id=5]
-[ext_resource path="res://player/inventory.gd" type="Script" id=6]
+[ext_resource path="res://player/inventory/inventory.tscn" type="PackedScene" id=6]
 [ext_resource path="res://_assets/art/wizard/wizard_head.png" type="Texture" id=7]
 [ext_resource path="res://_assets/art/wizard/wizard_robe.png" type="Texture" id=8]
 [ext_resource path="res://player/utility/color_modulator.gd" type="Script" id=9]
@@ -302,17 +302,17 @@ anim_player = NodePath("../AnimationPlayer")
 active = true
 parameters/playback = SubResource( 7 )
 
+[node name="Inventory" parent="." instance=ExtResource( 6 )]
+
 [node name="ColorModulator" type="Node" parent="."]
 script = ExtResource( 9 )
 hat_node_path = NodePath("../Direction/Sprite/Hat")
 robe_node_path = NodePath("../Direction/Sprite/Robe")
 wand_node_path = NodePath("../Wand")
 
-[node name="Inventory" type="Node" parent="."]
-script = ExtResource( 6 )
-
 [node name="InputHandler" type="Node" parent="."]
 script = ExtResource( 10 )
 
 [node name="DamageCooldown" type="Timer" parent="."]
+wait_time = 0.5
 one_shot = true

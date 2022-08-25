@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://dungeon/tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://player/player.tscn" type="PackedScene" id=2]
@@ -9,6 +9,29 @@
 [sub_resource type="ShaderMaterial" id=6]
 shader = ExtResource( 5 )
 shader_param/strength = 0.0
+
+[sub_resource type="ShaderMaterial" id=7]
+resource_local_to_scene = true
+shader = ExtResource( 5 )
+shader_param/strength = 1.0
+
+[sub_resource type="ShaderMaterial" id=8]
+resource_local_to_scene = true
+shader = ExtResource( 5 )
+shader_param/strength = 1.0
+
+[sub_resource type="ShaderMaterial" id=9]
+resource_local_to_scene = true
+shader = ExtResource( 5 )
+shader_param/strength = 1.0
+
+[sub_resource type="RectangleShape2D" id=10]
+resource_local_to_scene = true
+extents = Vector2( 4.5, 1 )
+
+[sub_resource type="RectangleShape2D" id=11]
+resource_local_to_scene = true
+extents = Vector2( 5, 8 )
 
 [sub_resource type="Animation" id=2]
 length = 0.001
@@ -97,24 +120,39 @@ position = Vector2( 84, 124 )
 self_modulate = Color( 0.5, 2.5, 0.625, 1 )
 material = SubResource( 6 )
 
+[node name="Whiten" parent="YSort/Players/Player2/Direction/Sprite/Robe" index="0"]
+material = SubResource( 7 )
+
+[node name="Whiten" parent="YSort/Players/Player2/Direction/Sprite/Head" index="0"]
+material = SubResource( 8 )
+
 [node name="Hat" parent="YSort/Players/Player2/Direction/Sprite" index="3"]
 self_modulate = Color( 0.5, 2.5, 0.625, 1 )
 
+[node name="Whiten" parent="YSort/Players/Player2/Direction/Sprite/Hat" index="0"]
+material = SubResource( 9 )
+
 [node name="Wand" parent="YSort/Players/Player2" index="1"]
 self_modulate = Color( 1.59375, 0.5, 2.5, 1 )
+
+[node name="CollisionShape2D" parent="YSort/Players/Player2" index="2"]
+shape = SubResource( 10 )
+
+[node name="CollisionShape2D" parent="YSort/Players/Player2/Hitbox" index="0"]
+shape = SubResource( 11 )
 
 [node name="AnimationPlayer" parent="YSort/Players/Player2" index="4"]
 anims/RESET = SubResource( 2 )
 anims/idle = SubResource( 3 )
 anims/walk = SubResource( 4 )
 
-[node name="AnimationTree" parent="YSort/Players/Player2" index="5"]
+[node name="AnimationTree" parent="YSort/Players/Player2" index="6"]
 parameters/playback = SubResource( 5 )
 
-[node name="ColorModulator" parent="YSort/Players/Player2" index="6"]
+[node name="ColorModulator" parent="YSort/Players/Player2" index="7"]
 modulation = Color( 0.5, 2.5, 0.625, 1 )
 
-[node name="InputHandler" parent="YSort/Players/Player2" index="8"]
+[node name="InputHandler" parent="YSort/Players/Player2" index="9"]
 device_name = "0"
 
 [node name="Tables" type="YSort" parent="YSort"]
@@ -135,15 +173,15 @@ ingredient_override = 0
 
 [node name="Table4" parent="YSort/Tables" instance=ExtResource( 4 )]
 position = Vector2( 15, 141 )
-ingredient_override = 2
+ingredient_override = 1
 
 [node name="Table10" parent="YSort/Tables" instance=ExtResource( 4 )]
 position = Vector2( 15, 164 )
-ingredient_override = 2
+ingredient_override = 1
 
 [node name="Table5" parent="YSort/Tables" instance=ExtResource( 4 )]
 position = Vector2( 15, 91 )
-ingredient_override = 1
+ingredient_override = 0
 
 [node name="Table9" parent="YSort/Tables" instance=ExtResource( 4 )]
 position = Vector2( 15, 114 )

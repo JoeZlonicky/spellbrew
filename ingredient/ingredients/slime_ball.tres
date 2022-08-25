@@ -7,3 +7,4 @@
 script = ExtResource( 1 )
 display_name = "Slimeball"
 sprite = ExtResource( 2 )
+color = "Green"

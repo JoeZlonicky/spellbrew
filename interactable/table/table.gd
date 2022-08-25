@@ -2,11 +2,11 @@ extends "res://interactable/interactable.gd"
 
 const SPAWNABLE = [
 	IngredientList.EYE_OF_NEWT,
-	IngredientList.SLIME_BALL,
 	IngredientList.PURE_LIGHTNING
+	# IngredientList.SLIME_BALL, 
 ]
 
-export (int, -1, 2) var ingredient_override = -1  # For testing
+export (int, -1, 1) var ingredient_override = -1  # For testing
 
 var ingredient: Ingredient
 
