@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://_assets/art/wizard/wizard_shadow.png" type="Texture" id=1]
 [ext_resource path="res://player/player.gd" type="Script" id=2]
@@ -10,12 +10,30 @@
 [ext_resource path="res://_assets/art/wizard/wizard_robe.png" type="Texture" id=8]
 [ext_resource path="res://player/utility/color_modulator.gd" type="Script" id=9]
 [ext_resource path="res://player/utility/input_handler.gd" type="Script" id=10]
+[ext_resource path="res://shaders/whiten_shader.tres" type="Shader" id=11]
+
+[sub_resource type="ShaderMaterial" id=14]
+resource_local_to_scene = true
+shader = ExtResource( 11 )
+shader_param/strength = 1.0
+
+[sub_resource type="ShaderMaterial" id=15]
+resource_local_to_scene = true
+shader = ExtResource( 11 )
+shader_param/strength = 1.0
+
+[sub_resource type="ShaderMaterial" id=16]
+resource_local_to_scene = true
+shader = ExtResource( 11 )
+shader_param/strength = 1.0
 
 [sub_resource type="RectangleShape2D" id=1]
+resource_local_to_scene = true
 extents = Vector2( 4.5, 1 )
 
 [sub_resource type="RectangleShape2D" id=13]
-extents = Vector2( 5, 10 )
+resource_local_to_scene = true
+extents = Vector2( 5, 8 )
 
 [sub_resource type="Animation" id=5]
 length = 0.001
@@ -30,6 +48,42 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ 0.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Direction/Sprite/Robe/Whiten:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Direction/Sprite/Head/Whiten:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Direction/Sprite/Hat/Whiten:self_modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
 }
 
 [sub_resource type="Animation" id=3]
@@ -64,6 +118,85 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 0,
 "values": [ 0.0, 3.0, 0.0, -3.0 ]
+}
+
+[sub_resource type="Animation" id=19]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Direction/Sprite/Robe/Whiten:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Direction/Sprite/Head/Whiten:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Direction/Sprite/Hat/Whiten:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=18]
+resource_name = "hit"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Direction/Sprite/Robe/Whiten:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Direction/Sprite/Head/Whiten:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Direction/Sprite/Hat/Whiten:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 
 [sub_resource type="AnimationNodeAnimation" id=8]
@@ -105,8 +238,18 @@ self_modulate = Color( 2.5, 0.5, 0.5, 1 )
 position = Vector2( -0.5, -2 )
 texture = ExtResource( 8 )
 
+[node name="Whiten" type="Sprite" parent="Direction/Sprite/Robe"]
+self_modulate = Color( 1, 1, 1, 0 )
+material = SubResource( 14 )
+texture = ExtResource( 8 )
+
 [node name="Head" type="Sprite" parent="Direction/Sprite"]
 position = Vector2( -0.5, -2 )
+texture = ExtResource( 7 )
+
+[node name="Whiten" type="Sprite" parent="Direction/Sprite/Head"]
+self_modulate = Color( 1, 1, 1, 0 )
+material = SubResource( 15 )
 texture = ExtResource( 7 )
 
 [node name="Shadow" type="Sprite" parent="Direction/Sprite"]
@@ -120,6 +263,11 @@ self_modulate = Color( 2.5, 0.5, 0.5, 1 )
 position = Vector2( -0.5, -2 )
 texture = ExtResource( 3 )
 
+[node name="Whiten" type="Sprite" parent="Direction/Sprite/Hat"]
+self_modulate = Color( 1, 1, 1, 0 )
+material = SubResource( 16 )
+texture = ExtResource( 3 )
+
 [node name="Wand" parent="." instance=ExtResource( 4 )]
 self_modulate = Color( 2.5, 0.5, 0.5, 1 )
 input_handler_path = NodePath("../InputHandler")
@@ -129,13 +277,13 @@ visible = false
 position = Vector2( -0.5, -1 )
 shape = SubResource( 1 )
 
-[node name="Hitbox" type="Area2D" parent="."]
+[node name="Hitbox" type="Area2D" parent="." groups=["player_hitbox"]]
 script = ExtResource( 5 )
 player_path = NodePath("..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 visible = false
-position = Vector2( 0, -10 )
+position = Vector2( 0, -8 )
 shape = SubResource( 13 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -143,6 +291,10 @@ autoplay = "RESET"
 anims/RESET = SubResource( 5 )
 anims/idle = SubResource( 3 )
 anims/walk = SubResource( 4 )
+
+[node name="HitPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 19 )
+anims/hit = SubResource( 18 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource( 11 )
@@ -161,3 +313,6 @@ script = ExtResource( 6 )
 
 [node name="InputHandler" type="Node" parent="."]
 script = ExtResource( 10 )
+
+[node name="DamageCooldown" type="Timer" parent="."]
+one_shot = true

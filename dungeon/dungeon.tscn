@@ -1,9 +1,14 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://dungeon/tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://player/player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://interactable/cauldron/cauldron.tscn" type="PackedScene" id=3]
 [ext_resource path="res://interactable/table/table.tscn" type="PackedScene" id=4]
+[ext_resource path="res://shaders/whiten_shader.tres" type="Shader" id=5]
+
+[sub_resource type="ShaderMaterial" id=6]
+shader = ExtResource( 5 )
+shader_param/strength = 0.0
 
 [sub_resource type="Animation" id=2]
 length = 0.001
@@ -58,7 +63,6 @@ tracks/0/keys = {
 
 [sub_resource type="Environment" id=1]
 background_mode = 4
-background_energy = 2.0
 background_canvas_max_layer = 1
 glow_enabled = true
 glow_intensity = 0.91
@@ -91,6 +95,7 @@ position = Vector2( 84, 124 )
 
 [node name="Robe" parent="YSort/Players/Player2/Direction/Sprite" index="0"]
 self_modulate = Color( 0.5, 2.5, 0.625, 1 )
+material = SubResource( 6 )
 
 [node name="Hat" parent="YSort/Players/Player2/Direction/Sprite" index="3"]
 self_modulate = Color( 0.5, 2.5, 0.625, 1 )

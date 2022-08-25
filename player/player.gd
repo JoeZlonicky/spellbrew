@@ -7,12 +7,17 @@ const ACCELERATION_WEIGHT: float = 30.0  # Multiplied by physics delta to get le
 const DECCELERATION_WEIGHT: float = 30.0  # Multiplied by physics delta to get lerp weight
 const MAX_KNOCKBACK: float = 100.0
 const KNOCKBACK_RECOVERY_RATE: float = 20.0  # Multiplied by physics delta to get lerp weight
+const MAX_HEALTH: int = 2
 
 var velocity: Vector2
 var knockback: Vector2
+var health: int = MAX_HEALTH
 
 onready var direction_node: Node2D = $Direction
 onready var animation_state_machine: AnimationNodeStateMachinePlayback = $AnimationTree["parameters/playback"]
+onready var hit_player: AnimationPlayer = $HitPlayer
+onready var damage_cooldown: Timer = $DamageCooldown
+onready var hat: Sprite = $Direction/Sprite/Hat
 onready var wand = $Wand
 onready var inventory = $Inventory
 onready var input_handler = $InputHandler
@@ -47,3 +52,17 @@ func _physics_process(delta: float) -> void:
 func apply_knockback(knockback_vector: Vector2) -> void:
 	knockback += knockback_vector
 	knockback = knockback.limit_length(MAX_KNOCKBACK)
+
+
+# Deal damage to player
+func take_damage(amount: int = 1):
+	if not damage_cooldown.is_stopped():
+		return
+	
+	hit_player.play("hit")
+	damage_cooldown.start()
+	health -= amount
+	if health == 1:
+		hat.hide()
+	elif health == 0:
+		queue_free()

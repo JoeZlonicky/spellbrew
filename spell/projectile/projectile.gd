@@ -54,6 +54,7 @@ func _on_FreeDelayTimer_timeout() -> void:
 # Check for hitting player hitbox
 func _on_Hitbox_area_entered(area) -> void:
 	if area.is_in_group("player_hitbox") and area.player != player_cast_by:
+		area.player.take_damage()
 		destroy()
 
 

@@ -4,7 +4,7 @@ extends "res://spell/spell.gd"
 const SHORT_RANGE_PROJECTILE: PackedScene = preload("res://spell/projectile/short_range/short_range_projectile.tscn")
 const TIME_BETWEEN_TICKS: float = 0.2
 const ANGLE_SPREAD_DEGREES: float = 30.0
-const SPELL_DURATION: float = 3.0
+const SPELL_DURATION: float = 1.5
 const NUM_PROJECTILES_PER_TICK: int = 4
  
 
@@ -24,6 +24,8 @@ func _ready() -> void:
 	tick_timer.wait_time = TIME_BETWEEN_TICKS
 	tick_timer.connect("timeout", self, "_on_tick_timer_timeout")
 	tick_timer.start()
+	
+	_on_tick_timer_timeout()  # First tick
 
 
 # Sends out a spread of projectiles
