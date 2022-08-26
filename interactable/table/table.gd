@@ -18,10 +18,7 @@ onready var pickup_text_spawn_point: Control = $PickupTextSpawnPoint
 # Spawns ingredients to be picked by a player
 func _ready():
 	randomize()
-	if ingredient_override > -1:
-		set_ingredient(SPAWNABLE[ingredient_override])
-	else:
-		set_ingredient(SPAWNABLE[randi() % SPAWNABLE.size()])
+	_on_RespawnTimer_timeout()
 
 
 # Only allow interaction if there is an ingredient that can be picked up
@@ -36,6 +33,7 @@ func _interact(player: Player):
 	pickup_text_spawn_point.add_child(pickup_text)
 	pickup_text.set_text(ingredient.display_name)
 	set_ingredient(null)
+	$RespawnTimer.start()
 
 
 # Set ingredient on table (or null for removing)
@@ -45,3 +43,10 @@ func set_ingredient(new_ingredient: Ingredient) -> void:
 		ingredient_sprite.texture = null
 	else:
 		ingredient_sprite.texture = new_ingredient.sprite
+
+
+func _on_RespawnTimer_timeout():
+	if ingredient_override > -1:
+		set_ingredient(SPAWNABLE[ingredient_override])
+	else:
+		set_ingredient(SPAWNABLE[randi() % SPAWNABLE.size()])

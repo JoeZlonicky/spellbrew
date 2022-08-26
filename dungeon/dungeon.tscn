@@ -5,6 +5,7 @@
 [ext_resource path="res://interactable/cauldron/cauldron.tscn" type="PackedScene" id=3]
 [ext_resource path="res://interactable/table/table.tscn" type="PackedScene" id=4]
 [ext_resource path="res://shaders/whiten_shader.tres" type="Shader" id=5]
+[ext_resource path="res://dungeon/dungeon.gd" type="Script" id=6]
 
 [sub_resource type="ShaderMaterial" id=6]
 shader = ExtResource( 5 )
@@ -84,15 +85,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=5]
 
-[sub_resource type="Environment" id=1]
-background_mode = 4
-background_canvas_max_layer = 1
-glow_enabled = true
-glow_intensity = 0.91
-glow_strength = 1.3
-glow_bloom = 0.24
-
 [node name="Dungeon" type="Node2D"]
+script = ExtResource( 6 )
 
 [node name="Floor" type="TileMap" parent="."]
 tile_set = ExtResource( 1 )
@@ -112,9 +106,10 @@ tile_data = PoolIntArray( 0, 1, 0, 1, 1, 1, 2, 1, 1, 3, 1, 1, 4, 1, 1, 5, 1, 1, 
 [node name="Players" type="YSort" parent="YSort"]
 
 [node name="Player1" parent="YSort/Players" instance=ExtResource( 2 )]
+position = Vector2( 78, 96 )
 
 [node name="Player2" parent="YSort/Players" instance=ExtResource( 2 )]
-position = Vector2( 84, 124 )
+position = Vector2( 241, 94 )
 
 [node name="Robe" parent="YSort/Players/Player2/Direction/Sprite" index="0"]
 self_modulate = Color( 0.5, 2.5, 0.625, 1 )
@@ -158,45 +153,32 @@ device_name = "0"
 [node name="Tables" type="YSort" parent="YSort"]
 
 [node name="Table" parent="YSort/Tables" instance=ExtResource( 4 )]
-position = Vector2( 91, 24 )
+position = Vector2( 103, 24 )
+
+[node name="Table3" parent="YSort/Tables" instance=ExtResource( 4 )]
+position = Vector2( 20, 72 )
+
+[node name="Table4" parent="YSort/Tables" instance=ExtResource( 4 )]
+position = Vector2( 19, 126 )
+
+[node name="Table5" parent="YSort/Tables" instance=ExtResource( 4 )]
+position = Vector2( 100, 172 )
+
+[node name="Table8" parent="YSort/Tables" instance=ExtResource( 4 )]
+position = Vector2( 211, 172 )
 
 [node name="Table2" parent="YSort/Tables" instance=ExtResource( 4 )]
 position = Vector2( 214, 24 )
 
-[node name="Table3" parent="YSort/Tables" instance=ExtResource( 4 )]
-position = Vector2( 19, 64 )
-ingredient_override = 0
-
-[node name="Table8" parent="YSort/Tables" instance=ExtResource( 4 )]
-position = Vector2( 19, 41 )
-ingredient_override = 0
-
-[node name="Table4" parent="YSort/Tables" instance=ExtResource( 4 )]
-position = Vector2( 19, 141 )
-ingredient_override = 1
-
-[node name="Table10" parent="YSort/Tables" instance=ExtResource( 4 )]
-position = Vector2( 19, 164 )
-ingredient_override = 1
-
-[node name="Table5" parent="YSort/Tables" instance=ExtResource( 4 )]
-position = Vector2( 19, 91 )
-ingredient_override = 0
-
-[node name="Table9" parent="YSort/Tables" instance=ExtResource( 4 )]
-position = Vector2( 19, 114 )
-ingredient_override = 1
-
 [node name="Table6" parent="YSort/Tables" instance=ExtResource( 4 )]
-position = Vector2( 304, 71 )
+position = Vector2( 300, 71 )
 
 [node name="Table7" parent="YSort/Tables" instance=ExtResource( 4 )]
-position = Vector2( 305, 127 )
+position = Vector2( 300, 127 )
 
 [node name="Cauldron" parent="YSort" instance=ExtResource( 3 )]
 position = Vector2( 153, 95 )
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource( 1 )
+[node name="Projectiles" type="Node2D" parent="."]
 
 [editable path="YSort/Players/Player2"]

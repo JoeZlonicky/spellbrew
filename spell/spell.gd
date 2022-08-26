@@ -32,7 +32,7 @@ func shoot_projectile_from_wand(projectile_scene: PackedScene) -> KinematicBody2
 	var projectile = projectile_scene.instance()
 	projectile.direction = (get_global_mouse_position() - player_cast_by.wand.global_position).normalized()
 	projectile.player_cast_by = player_cast_by
-	get_tree().root.add_child(projectile)
+	get_projectile_container().add_child(projectile)
 	projectile.set_player_color(player_color)
 	projectile.global_position = player_cast_by.wand.cast_point.global_position
 	return projectile
@@ -42,3 +42,12 @@ func shoot_projectile_from_wand(projectile_scene: PackedScene) -> KinematicBody2
 # Nice when you want to give a spell more pow
 func apply_knockback_to_caster(knockback: Vector2):
 	player_cast_by.apply_knockback(knockback)
+
+
+# Tries to find the best node to spawn projectiles under
+func get_projectile_container():
+	if get_tree().root.has_node("Game/Dungeon"):
+		return get_tree().root.get_node("Game/Dungeon").projectiles
+	if get_tree().root.has_node("Dungeon"):
+		return get_tree().root.get_node("Dungeon").projectiles
+	return get_tree().root

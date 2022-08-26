@@ -33,3 +33,9 @@ shape = SubResource( 1 )
 [node name="PickupTextSpawnPoint" type="Control" parent="." index="5"]
 margin_top = -13.0
 margin_bottom = -13.0
+
+[node name="RespawnTimer" type="Timer" parent="." index="6"]
+wait_time = 2.0
+one_shot = true
+
+[connection signal="timeout" from="RespawnTimer" to="." method="_on_RespawnTimer_timeout"]

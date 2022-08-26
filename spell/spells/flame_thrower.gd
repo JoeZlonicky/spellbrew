@@ -40,3 +40,7 @@ func _on_tick_timer_timeout() -> void:
 # Clean up once spell is done
 func _on_spell_timer_timeout() -> void:
 	queue_free()
+
+
+func get_display_name() -> String:
+	return "Flamethrower"

@@ -65,4 +65,3 @@ process_material = SubResource( 12 )
 
 [node name="CollisionShape2D" parent="Hitbox" index="0"]
 shape = SubResource( 13 )
-disabled = true

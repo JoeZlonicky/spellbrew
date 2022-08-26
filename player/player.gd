@@ -2,6 +2,8 @@ extends KinematicBody2D
 
 class_name Player
 
+signal died
+
 const MOVEMENT_SPEED: float = 60.0
 const ACCELERATION_WEIGHT: float = 30.0  # Multiplied by physics delta to get lerp weight
 const DECCELERATION_WEIGHT: float = 30.0  # Multiplied by physics delta to get lerp weight
@@ -65,4 +67,5 @@ func take_damage(amount: int = 1):
 	if health == 1:
 		hat.hide()
 	elif health == 0:
+		emit_signal("died")
 		queue_free()

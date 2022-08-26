@@ -6,6 +6,9 @@ const SPELL_RECIPES = {
 	SpellList.INFERNO_BLAST: [IngredientList.PURE_LIGHTNING, IngredientList.PURE_LIGHTNING],
 	SpellList.CROSS_FIRE: [IngredientList.EYE_OF_NEWT, IngredientList.PURE_LIGHTNING]
 }
+const PICKUP_TEXT = preload("res://interactable/table/pickup_text/pickup_text.tscn")
+
+onready var pickup_text_spawn_point: Control = $PickupTextSpawnPoint
 
 
 # Only allow interaction if player has enough ingredients
@@ -24,6 +27,10 @@ func _interact(player: Player) -> void:
 	if spell:
 		player.inventory.empty()
 		player.wand.equip_spell(spell)
+		
+		var pickup_text = PICKUP_TEXT.instance()
+		pickup_text_spawn_point.add_child(pickup_text)
+		pickup_text.set_text(SpellList.get_spell_display_name(spell))
 
 
 # Tries to find a matching spell recipe for the given ingredients

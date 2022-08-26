@@ -35,3 +35,7 @@ func cast_inferno_projectile() -> void:
 	
 	if num_projectiles_cast == TOTAL_NUM_PROJECTILES:
 		queue_free()
+
+
+func get_display_name() -> String:
+	return "Inferno Blast"

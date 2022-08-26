@@ -70,3 +70,7 @@ shape = SubResource( 1 )
 position = Vector2( 0, -14 )
 process_material = SubResource( 3 )
 texture = ExtResource( 4 )
+
+[node name="PickupTextSpawnPoint" type="Control" parent="." index="5"]
+margin_top = -20.0
+margin_bottom = -20.0

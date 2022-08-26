@@ -2,8 +2,8 @@ extends "res://spell/spell.gd"
 
 const BASIC_PROJECTILE: PackedScene = preload("res://spell/projectile/projectile.tscn")
 
-const NUM_TICKS: int = 3
-const TIME_BETWEEN_TICKS: float = 0.5
+const NUM_TICKS: int = 5
+const TIME_BETWEEN_TICKS: float = 0.25
 const START_DISTANCE = 10.0  # Start a bit spaced out from player
 const Y_OFFSET = -8.0  # Want to cast from roughly the center of the player sprite
 
@@ -66,3 +66,7 @@ func cast_projectile_at_angle(angle: float):
 	projectile.global_position = player_cast_by.global_position
 	projectile.global_position += projectile.direction.normalized() * START_DISTANCE
 	projectile.global_position.y += Y_OFFSET
+
+
+func get_display_name() -> String:
+	return "Crossfire"
