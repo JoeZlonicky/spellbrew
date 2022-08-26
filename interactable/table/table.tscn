@@ -29,3 +29,7 @@ shape = SubResource( 2 )
 visible = false
 position = Vector2( 0, -4 )
 shape = SubResource( 1 )
+
+[node name="PickupTextSpawnPoint" type="Control" parent="." index="5"]
+margin_top = -13.0
+margin_bottom = -13.0

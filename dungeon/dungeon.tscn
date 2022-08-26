@@ -149,7 +149,7 @@ anims/walk = SubResource( 4 )
 [node name="AnimationTree" parent="YSort/Players/Player2" index="6"]
 parameters/playback = SubResource( 5 )
 
-[node name="ColorModulator" parent="YSort/Players/Player2" index="7"]
+[node name="ColorModulator" parent="YSort/Players/Player2" index="8"]
 modulation = Color( 0.5, 2.5, 0.625, 1 )
 
 [node name="InputHandler" parent="YSort/Players/Player2" index="9"]
@@ -164,27 +164,27 @@ position = Vector2( 91, 24 )
 position = Vector2( 214, 24 )
 
 [node name="Table3" parent="YSort/Tables" instance=ExtResource( 4 )]
-position = Vector2( 15, 64 )
+position = Vector2( 19, 64 )
 ingredient_override = 0
 
 [node name="Table8" parent="YSort/Tables" instance=ExtResource( 4 )]
-position = Vector2( 15, 41 )
+position = Vector2( 19, 41 )
 ingredient_override = 0
 
 [node name="Table4" parent="YSort/Tables" instance=ExtResource( 4 )]
-position = Vector2( 15, 141 )
+position = Vector2( 19, 141 )
 ingredient_override = 1
 
 [node name="Table10" parent="YSort/Tables" instance=ExtResource( 4 )]
-position = Vector2( 15, 164 )
+position = Vector2( 19, 164 )
 ingredient_override = 1
 
 [node name="Table5" parent="YSort/Tables" instance=ExtResource( 4 )]
-position = Vector2( 15, 91 )
+position = Vector2( 19, 91 )
 ingredient_override = 0
 
 [node name="Table9" parent="YSort/Tables" instance=ExtResource( 4 )]
-position = Vector2( 15, 114 )
+position = Vector2( 19, 114 )
 ingredient_override = 1
 
 [node name="Table6" parent="YSort/Tables" instance=ExtResource( 4 )]

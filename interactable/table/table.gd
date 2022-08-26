@@ -5,12 +5,14 @@ const SPAWNABLE = [
 	IngredientList.PURE_LIGHTNING
 	# IngredientList.SLIME_BALL, 
 ]
+const PICKUP_TEXT = preload("res://interactable/table/pickup_text/pickup_text.tscn")
 
 export (int, -1, 1) var ingredient_override = -1  # For testing
 
 var ingredient: Ingredient
 
 onready var ingredient_sprite: Sprite = $IngredientSprite
+onready var pickup_text_spawn_point: Control = $PickupTextSpawnPoint
 
 
 # Spawns ingredients to be picked by a player
@@ -30,6 +32,9 @@ func _is_interactable(player: Player):
 # Remove ingredient from table and add to player's inventory
 func _interact(player: Player):
 	player.inventory.add_ingredient(ingredient)
+	var pickup_text = PICKUP_TEXT.instance()
+	pickup_text_spawn_point.add_child(pickup_text)
+	pickup_text.set_text(ingredient.display_name)
 	set_ingredient(null)
 
 
