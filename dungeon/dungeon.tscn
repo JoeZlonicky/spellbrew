@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://dungeon/tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://player/player.tscn" type="PackedScene" id=2]
@@ -6,6 +6,31 @@
 [ext_resource path="res://interactable/table/table.tscn" type="PackedScene" id=4]
 [ext_resource path="res://shaders/whiten_shader.tres" type="Shader" id=5]
 [ext_resource path="res://dungeon/dungeon.gd" type="Script" id=6]
+
+[sub_resource type="ShaderMaterial" id=12]
+resource_local_to_scene = true
+shader = ExtResource( 5 )
+shader_param/strength = 1.0
+
+[sub_resource type="ShaderMaterial" id=13]
+resource_local_to_scene = true
+shader = ExtResource( 5 )
+shader_param/strength = 1.0
+
+[sub_resource type="ShaderMaterial" id=14]
+resource_local_to_scene = true
+shader = ExtResource( 5 )
+shader_param/strength = 1.0
+
+[sub_resource type="RectangleShape2D" id=15]
+resource_local_to_scene = true
+extents = Vector2( 4.5, 1 )
+
+[sub_resource type="RectangleShape2D" id=16]
+resource_local_to_scene = true
+extents = Vector2( 5, 8 )
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=17]
 
 [sub_resource type="ShaderMaterial" id=6]
 shader = ExtResource( 5 )
@@ -108,6 +133,36 @@ tile_data = PoolIntArray( 0, 1, 0, 1, 1, 1, 2, 1, 1, 3, 1, 1, 4, 1, 1, 5, 1, 1, 
 [node name="Player1" parent="YSort/Players" instance=ExtResource( 2 )]
 position = Vector2( 78, 96 )
 
+[node name="Robe" parent="YSort/Players/Player1/Direction/Sprite" index="0"]
+self_modulate = Color( 2.5, 0.5, 0.5, 1 )
+
+[node name="Whiten" parent="YSort/Players/Player1/Direction/Sprite/Robe" index="0"]
+material = SubResource( 12 )
+
+[node name="Whiten" parent="YSort/Players/Player1/Direction/Sprite/Head" index="0"]
+material = SubResource( 13 )
+
+[node name="Hat" parent="YSort/Players/Player1/Direction/Sprite" index="3"]
+self_modulate = Color( 2.5, 0.5, 0.5, 1 )
+
+[node name="Whiten" parent="YSort/Players/Player1/Direction/Sprite/Hat" index="0"]
+material = SubResource( 14 )
+
+[node name="CollisionShape2D" parent="YSort/Players/Player1" index="2"]
+shape = SubResource( 15 )
+
+[node name="CollisionShape2D" parent="YSort/Players/Player1/Hitbox" index="0"]
+shape = SubResource( 16 )
+
+[node name="AnimationTree" parent="YSort/Players/Player1" index="6"]
+parameters/playback = SubResource( 17 )
+
+[node name="ColorModulator" parent="YSort/Players/Player1" index="8"]
+modulation = Color( 2.5, 0.5, 0.5, 1 )
+
+[node name="InputHandler" parent="YSort/Players/Player1" index="9"]
+device_name = "1"
+
 [node name="Player2" parent="YSort/Players" instance=ExtResource( 2 )]
 position = Vector2( 241, 94 )
 
@@ -181,4 +236,5 @@ position = Vector2( 153, 95 )
 
 [node name="Projectiles" type="Node2D" parent="."]
 
+[editable path="YSort/Players/Player1"]
 [editable path="YSort/Players/Player2"]

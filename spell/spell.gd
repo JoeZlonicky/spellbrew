@@ -4,6 +4,7 @@ extends Node2D
 var player_cast_by
 var player_position_at_cast: Vector2
 var player_color: Color
+var wand_cast_by
 var wand_end_at_cast: Vector2
 var direction_at_cast: Vector2
 
@@ -18,19 +19,20 @@ func _ready() -> void:
 
 
 # Set spell script and some boilerplate variables so they can be used by spells
-func initialize(player: KinematicBody2D, mouse_position: Vector2, color: Color):
+func initialize(player: KinematicBody2D):
 	player_cast_by = player
 	player_position_at_cast = player.global_position
-	player_color = color
-	wand_end_at_cast = player.wand.cast_point.global_position
-	direction_at_cast = (mouse_position - player.wand.global_position).normalized()
+	wand_cast_by = player.wand
+	player_color = wand_cast_by.player_color
+	wand_end_at_cast = wand_cast_by.cast_point.global_position
+	direction_at_cast = wand_cast_by.current_looking_direction
 
 
 # Helper function that simply spawns a projectile at the end of the wand
 # It returns the projectile it created so it can be adjusted if needed (like altering direction)
 func shoot_projectile_from_wand(projectile_scene: PackedScene) -> KinematicBody2D:
 	var projectile = projectile_scene.instance()
-	projectile.direction = (get_global_mouse_position() - player_cast_by.wand.global_position).normalized()
+	projectile.direction = wand_cast_by.current_looking_direction
 	projectile.player_cast_by = player_cast_by
 	get_projectile_container().add_child(projectile)
 	projectile.set_player_color(player_color)
